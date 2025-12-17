@@ -415,7 +415,7 @@
     </button>
   </div>
 
-  <!-- Модальное окно -->
+<!-- Модальное окно -->
 <div id="modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/50">
   <div class="bg-panel rounded-2xl shadow-2xl w-full max-w-md animate-slide-in">
     <div class="p-6">
@@ -429,10 +429,21 @@
       </div>
       
       <!-- ИЗМЕНЕННАЯ ФОРМА -->
- <!-- Простая кнопка "Связаться" через mailto -->
-<button onclick="location.href='mailto:miloslavasuradeeva@gmail.com?subject=Вопрос с сайта'" class="px-6 py-2 rounded-full bg-accent text-white hover:bg-accent-dark transition-colors button-hover-effect">
-    Связаться
-</button>
+    <form action="mailto:miloslavasuradeeva@gmail.com" method="post" enctype="text/plain">
+        <div>
+          <label for="name" class="block text-sm mb-2 text-text">Ваше имя</label>
+          <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-lg bg-background border border-accent/30 focus:border-accent focus:outline-none transition-colors">
+        </div>
+        
+        <div>
+          <label for="email" class="block text-sm mb-2 text-text">Email</label>
+          <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg bg-background border border-accent/30 focus:border-accent focus:outline-none transition-colors">
+        </div>
+        
+        <div>
+          <label for="message" class="block text-sm mb-2 text-text">Сообщение</label>
+          <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 rounded-lg bg-background border border-accent/30 focus:border-accent focus:outline-none transition-colors resize-none"></textarea>
+        </div>
         
         <button type="submit" class="w-full py-3 rounded-lg bg-accent text-white hover:bg-accent-dark transition-colors font-play button-hover-effect">
           Отправить сообщение
