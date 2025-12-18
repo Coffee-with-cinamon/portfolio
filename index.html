@@ -148,7 +148,7 @@
       transform: translateY(0);
     }
 
-    /* Стили для затемнения карточек навыков */
+    /* Стили для карточек навыков */
     .skill-card {
       position: relative;
       overflow: hidden;
@@ -357,6 +357,34 @@
     .star-delay-3 { animation-delay: 2s, 1.5s; }
     .star-delay-4 { animation-delay: 3s, 2s; }
     .star-delay-5 { animation-delay: 4s, 2.5s; }
+
+    /* НОВЫЙ СТИЛЬ: Контур для точек слайдера */
+    .slider-dot {
+      border: 2px solid;
+      transition: all 0.3s ease;
+    }
+    
+    .light .slider-dot {
+      border-color: rgba(90, 64, 57, 0.3);
+    }
+    
+    .dark .slider-dot {
+      border-color: rgba(232, 213, 207, 0.3);
+    }
+    
+    .slider-dot.active {
+      border-color: var(--accent);
+      background-color: var(--accent);
+    }
+
+    /* НОВЫЙ СТИЛЬ: Светлый текст деталей в светлой теме */
+    .light .skill-details div {
+      color: rgba(250, 240, 232, 0.95);
+    }
+    
+    .dark .skill-details div {
+      color: rgba(255, 248, 243, 0.95);
+    }
   </style>
 
   <script>
@@ -808,7 +836,7 @@
         </div>
         <div class="skill-details">
           <h4 class="text-overlay-light font-bold text-lg mb-3">Детали:</h4>
-          <div class="text-overlay-light/95 text-sm space-y-1">
+          <div class="text-sm space-y-1">
             3D-принтеры: Ender 3<br class="mb-1">Материалы: PLA, ABS<br class="mb-1">Опыт: 2+ года<br class="mb-1">Проекты: модели персонажей, арт-объекты
           </div>
         </div>
@@ -828,7 +856,7 @@
         </div>
         <div class="skill-details">
           <h4 class="text-overlay-light font-bold text-lg mb-3">Детали:</h4>
-          <div class="text-overlay-light/95 text-sm space-y-1">
+          <div class="text-sm space-y-1">
             Прототипирование: интерактивные макеты<br class="mb-1">Дизайн-системы: создание компонентов<br class="mb-1">Авто-лейаут: адаптивный дизайн<br class="mb-1">Плагины: используемые для оптимизации
           </div>
         </div>
@@ -848,7 +876,7 @@
         </div>
         <div class="skill-details">
           <h4 class="text-overlay-light font-bold text-lg mb-3">Детали:</h4>
-          <div class="text-overlay-light/95 text-sm space-y-1">
+          <div class="text-sm space-y-1">
             Инструменты: кисти, слои, фильтры<br class="mb-1">Стили: аниме, реализм, концепт-арт<br class="mb-1">Рабочий процесс: от скетча до финальной отрисовки<br class="mb-1">Экспорт: подготовка для печати и веба
           </div>
         </div>
@@ -868,7 +896,7 @@
         </div>
         <div class="skill-details">
           <h4 class="text-overlay-light font-bold text-lg mb-3">Детали:</h4>
-          <div class="text-overlay-light/95 text-sm space-y-1">
+          <div class="text-sm space-y-1">
             Моделирование: полигональное, скульптинг<br class="mb-1">Рендер: Cycles, Eevee, настройка материалов<br class="mb-1">Текстурирование: UV развертки, procedural материалы
           </div>
         </div>
@@ -888,7 +916,7 @@
         </div>
         <div class="skill-details">
           <h4 class="text-overlay-light font-bold text-lg mb-3">Детали:</h4>
-          <div class="text-overlay-light/95 text-sm space-y-1">
+          <div class="text-sm space-y-1">
             Ретушь: профессиональная обработка фото<br class="mb-1">Композитинг: создание сложных коллажей
           </div>
         </div>
@@ -908,7 +936,7 @@
         </div>
         <div class="skill-details">
           <h4 class="text-overlay-light font-bold text-lg mb-3">Детали:</h4>
-          <div class="text-overlay-light/95 text-sm space-y-1">
+          <div class="text-sm space-y-1">
             Теория цвета: гармония, контраст, психология<br class="mb-1">Композиция: золотое сечение<br class="mb-1">Типографика: работа со шрифтами
           </div>
         </div>
@@ -1180,9 +1208,9 @@
           
           sliderTrack.appendChild(slide);
           
-          // Создание точек
+          // Создание точек (ИЗМЕНЕНО: добавлен класс slider-dot)
           const dot = document.createElement('button');
-          dot.className = `w-3 h-3 rounded-full transition-colors ${index === 0 ? 'bg-accent' : 'bg-accent/30'} button-hover-effect`;
+          dot.className = `slider-dot w-4 h-4 rounded-full transition-all duration-300 ${index === 0 ? 'active bg-accent' : 'bg-accent/30'} button-hover-effect`;
           dot.setAttribute('aria-label', `Перейти к слайду ${index + 1}`);
           dot.addEventListener('click', () => goToSlide(index));
           sliderDots.appendChild(dot);
@@ -1195,10 +1223,10 @@
           sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
         }
         
-        // Обновление активной точки
+        // Обновление активной точки (ИЗМЕНЕНО: добавлен класс slider-dot)
         if (sliderDots) {
           document.querySelectorAll('#sliderDots button').forEach((dot, i) => {
-            dot.className = `w-3 h-3 rounded-full transition-colors ${i === currentSlide ? 'bg-accent' : 'bg-accent/30'} button-hover-effect`;
+            dot.className = `slider-dot w-4 h-4 rounded-full transition-all duration-300 ${i === currentSlide ? 'active bg-accent' : 'bg-accent/30'} button-hover-effect`;
           });
         }
       }
